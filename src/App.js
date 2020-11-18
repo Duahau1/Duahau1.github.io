@@ -1,32 +1,56 @@
-import React,{useState} from 'react';
-import Tweet from './tweet';
-import Nav from './nav';
-import About from './About';
-import Item from './itemdetail';
-import {BrowserRouter as Router,Switch, Route} from 'react-router-dom';
-function App (){
-  const home =()=>{
+import React, { Component } from 'react';
+import {BrowserRouter as Router, Switch,Route,Link} from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import './App.css';
+
+import Footer from './components/footer';
+import HomePage from './pages/homepage';
+import About from './pages/about';
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      title: 'Van Nguyen',
+      headerLink :[
+        {title:'Home',path:'/'},
+        {title:'About',path:'/About'},
+      ],
+      home:{
+        title:`Duahau's repository`,
+        subtitle:'Projects that made a difference',
+        text:'Checkout my projects below'
+      },
+      about:{
+        title:'About me'
+      }
+    }
+  }
+  render() {
     return (
-    <div>
-      <h1>Home page</h1>
-    </div>
+    <Router>
+      <Container className="p-0" fluid={true}>
+      <Navbar className="border-bottom"  expand="lg">
+      <Navbar.Brand><a href="/" style={{color:'black',textDecoration:'none'}}>Duahau</a></Navbar.Brand>
+      <Navbar.Toggle aria-controls="navbar-toggle"/>
+      <Navbar.Collapse id ='navbar-toggle'>
+        <Nav className="ml-auto">
+          <Link className='nav-link' to ='/'>Home</Link>
+          <Link className='nav-link' to ='/About'>About</Link>
+        </Nav>
+      </Navbar.Collapse>
+      </Navbar>
+      <Switch>
+      <Route path='/' exact component={()=><HomePage title={this.state.home.title} subtitle={this.state.home.subtitle} text={this.state.home.text}/>} />
+      <Route path='/About' component={()=><About title={this.state.about.title} />} />
+      </Switch>
+      <Footer/>
+      </Container>
+    </Router>
+
     )
   }
-  return (
-    <Router>
-    <div>
-      <h1>This is my React page</h1>
-    
-      <Nav />
-      <Switch>
-      <Route path='/' exact component={home}/>
-      <Route path='/about' component={About}/>
-      <Route path='/tweet' exact component ={()=><Tweet name="QBT" message="Toi thich KXY" />}/>
-      <Route path="/tweet/:id" component={Item}/>
-      </Switch>
-    </div>
-    </Router>
-  )
 }
 
 export default App;

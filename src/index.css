@@ -12,23 +12,44 @@ code {
     monospace;
 }
 
-.tweet {
-  border : 2px solid black;
+.g-card {
+  margin: 20px;
 }
-.redClass {
-color:red;
 
+
+.g-card-image {
+  border-radius: 10px;
+  width: 300px;
+  height: 480px;
+  box-shadow: 0px 0px 3px 1px #ccc;
 }
-.nav {
-  display:flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: aqua;
+
+
+.g-card-info {
+  margin-top: 10px;
+  min-height: 100px;
 }
-.nav-links {
-  display:flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 50%;
-  list-style: none;
+
+
+.g-card-title {
+  font-size: 24px;
+  margin: 0px;
+}
+
+
+.g-card-sub-title {
+  font-size: 16px;
+  margin: 0px;
+}
+
+
+.success-msg {
+  color: #57A773;
+  padding: 10px 15px;
+}
+
+
+.err-msg {
+  color: #EE6352;
+  padding: 10px 15px;
 }
